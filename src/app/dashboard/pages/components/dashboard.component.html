@@ -1,0 +1,10 @@
+
+<div class="container-fluid mt-4">
+    <div class="container text-center">
+        <div class="row align-items-center">
+          <div *ngFor="let card of cards" class="col-3">
+            <app-card-exercise [cardItems]="card"></app-card-exercise>            
+          </div>          
+        </div>
+      </div>
+</div>

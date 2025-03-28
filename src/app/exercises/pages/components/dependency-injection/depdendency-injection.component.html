@@ -1,0 +1,29 @@
+<div class="container-fluid mt-4">
+    <div class="container">
+        <div class="row text-left">
+            <h4>Two main roles exist in the DI system</h4>
+            <p>Dependency consumer and dependency provider.</p>
+            <h4>Injecting a dependency</h4>
+            <p>The most common way to inject a dependency is to declare it in a class constructor. </p>
+            <p>Another option is to use the inject method</p>
+        </div>
+        <div class="row">
+            <p>Tener en cuenta la importación de: <strong>HttpClientModule</strong> en el app.module.ts </p>
+        </div>
+        <div class="row">
+            <ul *ngFor="let item of users">
+                <li> <strong>email:</strong> {{item.email}}, <strong>username:</strong>  {{item.username}}</li>
+            </ul>
+        </div>
+        
+    </div>    
+</div>
+<div style="height: 400px; border: 1px solid #ccc;">
+  <ngx-monaco-editor 
+    [(ngModel)]="code" 
+    [options]="editorOptions">
+  </ngx-monaco-editor>
+</div>
+
+
+  
