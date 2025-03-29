@@ -1,28 +1,92 @@
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-4 mb-4">
     <div class="container">
-        <div class="row text-left">
-            <h4>Two main roles exist in the DI system</h4>
-            <p>Dependency consumer and dependency provider.</p>
-            <h4>Injecting a dependency</h4>
-            <p>The most common way to inject a dependency is to declare it in a class constructor. </p>
-            <p>Another option is to use the inject method</p>
-        </div>
-        <div class="row">
-            <p>Tener en cuenta la importación de: <strong>HttpClientModule</strong> en el app.module.ts </p>
-        </div>
-        <div class="row">
-            <ul *ngFor="let item of users">
-                <li> <strong>email:</strong> {{item.email}}, <strong>username:</strong>  {{item.username}}</li>
+        <div class="row text-left mt-3">
+            <div class="d-flex justify-content-center">
+                <h2>Two main roles exist in the DI system</h2>
+            </div>
+            
+            <ul>
+                <li>Dependency consumer</li>
+                <li>Dependency provider</li>
             </ul>
+            <div class="d-flex justify-content-center">
+                <h3>Injecting a dependency:</h3>
+            </div>
+            
+            
+            <ol>
+                <li>The most common way to inject a dependency is to declare it in a class <strong>constructor</strong> .</li>
+                <li>Another option is to use the <strong>inject method</strong> </li>
+                <li>Es posible inyectar dentro del component en la propiedad 
+                    <pre>providers: [TestsService]</pre>
+                     siendo tambien necesario instanciarlo en el constructor  
+                </li>
+            </ol>            
         </div>
         
+       
+        <!-- MONACO -->
+        <div class="row">
+            <h4> Inyección en constructor:</h4>
+            <ngx-monaco-editor 
+              [(ngModel)]="code" 
+              [options]="editorOptions">
+            </ngx-monaco-editor>
+        </div>
+        <!-- MONACO -->
+        <div class="row">
+            <h4> Declaración de servicio a nivel root:</h4>
+            <ngx-monaco-editor 
+              [(ngModel)]="serviceCode" 
+              [options]="editorOptions">
+            </ngx-monaco-editor>
+        </div>
+        <div class="row mt-3">
+            <div class="d-flex justify-content-center">
+                <h3>providedIn y NgModules</h3>
+            </div>
+
+            <p>
+                Debemos registrar un servicio en el módulo principal, a menos que queramos que el servicio esté disponible solo si se importa un determinado @NgModule.
+                Si el providedIn no esta especificado 'root' tendremos que proporcionarlo en un determinado @NgModule ó @Component. Por ejemplo, si queremos que TestService no este disponible en la app a menos que se importe un TestService, podemos especificar que el servicio se proporcione solo en ese módulo.
+            </p>
+            <div class="row">
+                <h4> Módulo específico:</h4>
+                <ngx-monaco-editor 
+                  [(ngModel)]="serviceCodeSpecify" 
+                  [options]="editorOptions">
+                </ngx-monaco-editor>
+            </div>
+        </div>
+        <p>
+            Si no es posible especificar en el servicio qué módulo debe proporcionarlo, también podemos declarar un provider para el servicio dentro del módulo
+        </p>
+        <div class="row">
+            <h4> Inyección de servicio a nivel módulo:</h4>
+            <ngx-monaco-editor 
+              [(ngModel)]="serviceInModule" 
+              [options]="editorOptions">
+            </ngx-monaco-editor>
+        </div>
+        <div class="row mt-3">
+            <div class="d-flex justify-content-center">
+                <h3>Limitar el scope del provider con componentes</h3>                
+            </div>
+            <p>
+                Otra forma de limitar el scope del provider es agregar el servicio al array providers de la metadata del componente. Los providers de componentes y de modulos son independientes entre sí. Este método es útil cuando deseamos cargar con entusiasmo un módulo que necesita un servicio para sí mismo. La prestación de un servicio en el componente limita el servicio solo a ese componente (otros componentes en el mismo módulo no pueden acceder a él).
+            </p>
+        </div>
+        <div class="row">
+            <h4> Inyección de servicio a nivel componente:</h4>
+            <ngx-monaco-editor 
+              [(ngModel)]="serviceInComponent" 
+              [options]="editorOptions">
+            </ngx-monaco-editor>
+        </div>
+        <div class="row mt-2">
+            <h5>Nota: Tener en cuenta la importación de: <strong>HttpClientModule</strong> en el app.module.ts para hacer uso de peticiones http</h5>
+        </div>
     </div>    
-</div>
-<div style="height: 400px; border: 1px solid #ccc;">
-  <ngx-monaco-editor 
-    [(ngModel)]="code" 
-    [options]="editorOptions">
-  </ngx-monaco-editor>
 </div>
 
 
